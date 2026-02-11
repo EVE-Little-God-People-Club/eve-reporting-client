@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "EVE Reporting Client",
+  "version": "1.0.0",
+  "identifier": "net.acalex.eve.reportingclient",
+  "build": {
+    "beforeDevCommand": "pnpm pg-dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm pg-build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "eve-reporting-client",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "security": {
+      "capabilities": [
+        "default",
+        "mobile-capability"
+      ]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/64x64.png",
+      "icons/128x128.png",
+      "icons/256x256.png",
+      "icons/512x512.png"
+    ]
+  }
+}
