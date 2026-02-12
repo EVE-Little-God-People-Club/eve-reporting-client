@@ -26,6 +26,12 @@ jobs:
         with:
           deno-version: lts
 
+      - name: setup jdk
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'microsoft'
+          java-version: '21'
+
       - name: run script
         run: deno task build
 
