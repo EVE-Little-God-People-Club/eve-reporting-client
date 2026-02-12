@@ -53,10 +53,19 @@ async function init() {
     set -e
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     . "$HOME/.cargo/env"
-    sudo apt-get update
-    sudo apt-get install -y nodejs npm openjdk-17-jdk
+    sudo apt update
+    sudo apt install -y nodejs npm
     npm install -g pnpm@latest-10
     pnpm install
+
+    sudo apt install openjdk-21-jdk
+    sudo tee -a /etc/profile.d/java.sh <<'EOF'
+    export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))
+    export PATH=$PATH:$JAVA_HOME/bin
+    EOF
+    sudo -s
+    . /etc/profile.d/java.sh
+
     pnpm init-android
     pnpm build
   `.trim()
