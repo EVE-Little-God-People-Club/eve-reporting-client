@@ -10,6 +10,7 @@ env:
   ANDROID_KEYSTORE_CONTENT: ${{ secrets.ANDROID_KEYSTORE_CONTENT }}
   ANDROID_KEYSTORE_TOKEN: ${{ secrets.ANDROID_KEYSTORE_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.repository }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 jobs:
@@ -27,7 +28,4 @@ jobs:
 
       - name: run script
         run: deno task build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
