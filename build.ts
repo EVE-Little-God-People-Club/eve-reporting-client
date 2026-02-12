@@ -59,8 +59,6 @@ async function init() {
     pnpm install
 
     sudo apt install -y openjdk-21-jdk
-    export JAVA_HOME=/usr/lib/jvm/default-java
-    export PATH="$JAVA_HOME/bin:$PATH"
 
     pnpm init-android
     pnpm build
