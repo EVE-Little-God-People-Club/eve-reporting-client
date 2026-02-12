@@ -59,6 +59,8 @@ async function init() {
     pnpm install
 
     sudo apt install -y openjdk-21-jdk
+    sudo update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
+    sudo update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
 
     pnpm init-android
     pnpm build
