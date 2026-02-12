@@ -52,7 +52,7 @@ async function init() {
   const script = `
     set -e
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source "$HOME/.cargo/env"
+    . "$HOME/.cargo/env"
     sudo apt-get update
     sudo apt-get install -y nodejs npm openjdk-17-jdk
     npm install
