@@ -56,8 +56,8 @@ async function init() {
     sudo apt-get update
     sudo apt-get install -y nodejs npm openjdk-17-jdk
     npm install
-    npm run tauri init-android
-    npm run tauri build
+    npm run init-android
+    npm run build
   `.trim()
 
   const cmd = new Deno.Command("/bin/sh", {
