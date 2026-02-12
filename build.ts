@@ -55,9 +55,10 @@ async function init() {
     . "$HOME/.cargo/env"
     sudo apt-get update
     sudo apt-get install -y nodejs npm openjdk-17-jdk
-    npm install
-    npm run init-android
-    npm run build
+    npm install -g pnpm@latest-10
+    pnpm install
+    pnpm init-android
+    pnpm build
   `.trim()
 
   const cmd = new Deno.Command("/bin/sh", {
