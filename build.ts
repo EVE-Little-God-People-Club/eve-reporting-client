@@ -58,13 +58,9 @@ async function init() {
     npm install -g pnpm@latest-10
     pnpm install
 
-    sudo apt install openjdk-21-jdk
-    sudo tee -a /etc/profile.d/java.sh <<'EOF'
-    export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))
-    export PATH=$PATH:$JAVA_HOME/bin
-    EOF
-    sudo -s
-    . /etc/profile.d/java.sh
+    sudo apt install -y openjdk-21-jdk
+    export JAVA_HOME=/usr/lib/jvm/default-java
+    export PATH="$JAVA_HOME/bin:$PATH"
 
     pnpm init-android
     pnpm build
