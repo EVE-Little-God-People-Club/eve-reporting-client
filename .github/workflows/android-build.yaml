@@ -1,0 +1,29 @@
+name: android-build
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+  ANDROID_KEYSTORE_CONTENT: ${{ secrets.ANDROID_KEYSTORE_CONTENT }}
+  ANDROID_KEYSTORE_TOKEN: ${{ secrets.ANDROID_KEYSTORE_TOKEN }}
+
+
+jobs:
+  android-build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+
+      - name: setup deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: lts
+
+      - name: run script
+        run: deno task build
+

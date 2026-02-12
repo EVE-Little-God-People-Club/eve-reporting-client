@@ -62,9 +62,6 @@ export class EventReceiverManager {
   public static instance = new EventReceiverManager()
 
   public characters: string[] = []
-  public warnListener: ((title: string) => unknown)[] = []
-	public reminderListener: ((title: string) => unknown)[] = []
-  public openListener: ((chars: string[]) => unknown)[] = []
 
   private eventReceiver: EventReceiver | undefined = undefined
   private constructor() {
@@ -78,30 +75,12 @@ export class EventReceiverManager {
 			this.characters = []
       this.eventReceiver = new EventReceiver(cfg.sseUrl as URL, chars => {
         this.characters = chars
-        this.openListener.forEach(l => l(this.characters))
 				EventCenter.instance.emit("event-receiver-open", chars)
       })
-      this.warnListener.forEach(l => this.eventReceiver?.addWarnListener(l))
-      this.reminderListener.forEach(l => this.eventReceiver?.addReminderListener(l))
 
 			this.eventReceiver.addWarnListener(t => EventCenter.instance.emit("warn", t))
 			this.eventReceiver.addReminderListener(t => EventCenter.instance.emit("reminder", t))
     })
-  }
-
-  public addWarnListener(listener: (title: string) => unknown) {
-		this.warnListener.push(listener)
-	}
-
-	public addReminderListener(listener: (title: string) => unknown) {
-		this.reminderListener.push(listener)
-	}
-
-  public addOpenListener(listener: (chars: string[]) => unknown) {
-    this.openListener.push(listener)
-    if (this.eventReceiver) {
-      listener(this.characters)
-    }
   }
 }
 

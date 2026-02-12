@@ -18,11 +18,11 @@ export class EventCenter {
       .forEach(l => l(args))
   }
 
-  public listen(eventName: string, listener: (args: unknown) => unknown) {
+  public listen<T>(eventName: string, listener: (args: T) => unknown) {
     const id = crypto.randomUUID()
     this.listener.push({
       eventName,
-      listener,
+      listener: listener as (args: unknown) => unknown,
       id
     })
     return () => {
